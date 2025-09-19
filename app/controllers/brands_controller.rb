@@ -3,7 +3,7 @@ class BrandsController < ApplicationController
     if params[:query].present?
       @brands = Brand.where("name ILIKE ?", "%#{params[:query]}%")
     else
-      @brands = Brand.all.order(:name)
+      @brands = Brand.all.order(created_at: :desc)
     end
   end
 
@@ -15,7 +15,7 @@ class BrandsController < ApplicationController
   end
 
   def create
-    @brand = Brand.new(name: params[:name], description: params[:description])
+    @brand = Brand.new(name: brand_params[:name], description: brand_params[:description])
     @brand.save!
 
     if @brand.persisted?
