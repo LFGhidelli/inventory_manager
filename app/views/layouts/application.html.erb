@@ -22,16 +22,21 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <%= render "layouts/components/header" %>
+
     <div class="container-fluid">
-      <%= render "layouts/components/sidebar" %>
-      <div class="col py-3">
-        <div class="container mt-4">
-          <%= yield %>
+      <div class="row">
+        <%= render "layouts/components/sidebar" %>
+
+        <div class="col py-3">
+          <div class="container mt-4">
+            <%= yield %>
+          </div>
         </div>
       </div>
     </div>
+
     <%= render "layouts/components/footer" %>
   </body>
 </html>

@@ -1,13 +1,14 @@
 class BrandsController < ApplicationController
   def index
     if params[:query].present?
-      @brands = Brand.where("name ILIKE ?", "%#{params[:query]}%")
+      @pagy, @brands = pagy(Brand.where("name ILIKE ?", "%#{params[:query]}%"))
     else
-      @brands = Brand.all.order(created_at: :desc)
+      @pagy, @brands = pagy(Brand.all.order(created_at: :desc), limit: 5)
     end
   end
 
   def show
+    @brand = Brand.find(params[:id])
   end
 
   def new
@@ -15,7 +16,7 @@ class BrandsController < ApplicationController
   end
 
   def create
-    @brand = Brand.new(name: brand_params[:name], description: brand_params[:description])
+    @brand = Brand.new(brand_params)
     @brand.save!
 
     if @brand.persisted?
@@ -33,7 +34,7 @@ class BrandsController < ApplicationController
 
   def update
     @brand = Brand.find(params[:id])
-  
+
     if @brand.update(brand_params)
       redirect_to brands_path
     else

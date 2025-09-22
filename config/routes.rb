@@ -15,4 +15,8 @@ Rails.application.routes.draw do
   root "products#index"
   resources :products
   resources :brands
+  resources :categories
+  resources :suppliers
+  resources :products
+  resources :inflows, only: [ :index, :new, :create, :show ]
 end
