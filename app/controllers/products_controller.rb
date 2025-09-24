@@ -2,6 +2,8 @@ class ProductsController < ApplicationController
   def index
     if params[:query].present?
       @pagy, @products = pagy(Product.where("title ILIKE ?", "%#{params[:query]}%"))
+    elsif params[:brand_query].present? && params[:category_query].present?
+      @pagy, @products = pagy(Product.where(brand_id: params[:brand_query], category_id: params[:category_query]))
     else
       @pagy, @products = pagy(Product.all.order(created_at: :desc), limit: 5)
     end
@@ -17,8 +19,7 @@ class ProductsController < ApplicationController
 
   def create
     @product = Product.new(product_params)
-    @product.save!
-    debugger
+    @product.save
 
     if @product.persisted?
       flash[:notice] = "Categoria criada com sucesso"

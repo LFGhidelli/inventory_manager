@@ -19,4 +19,5 @@ Rails.application.routes.draw do
   resources :suppliers
   resources :products
   resources :inflows, only: [ :index, :new, :create, :show ]
+  resources :outflows, only: [ :index, :new, :create, :show ]
 end
