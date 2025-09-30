@@ -13,6 +13,13 @@
         <%= submit_tag "Buscar", class: "btn btn-outline-success" %>
       </div>
     <% end %>
+
+    <%= form_with url: products_path, method: :get, class: "d-flex" do %>
+      <div class="input-group">
+        <%= text_field_tag :number_query, params[:number_query], placeholder: "Número de série", class: "form-control" %>
+        <%= submit_tag "Buscar", class: "btn btn-outline-success" %>
+      </div>
+    <% end %>
   </div>
 
   <div class="col-md-3 text-md-end mt-2 mt-md-0">
