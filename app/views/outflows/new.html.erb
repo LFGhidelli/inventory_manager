@@ -1,0 +1,29 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= simple_form_for @outflow, html: { class: "mb-3 shadow p-3 mb-5 bg-body-tertiary rounded" } do |f| %>
+      <h2>Nova saída</h2>
+
+      <%= f.error_notification %>
+
+      <%= f.association :product, 
+            collection: Product.all, 
+            label: "Produto", 
+            prompt: "Selecione um produto", 
+            input_html: { class: "form-select" } %>
+
+      <%= f.input :quantity, 
+            label: "Quantidade", 
+            input_html: { class: "form-control" } %>
+
+      <%= f.input :description, 
+            label: "Descrição", 
+            as: :text, 
+            input_html: { class: "form-control" } %>
+
+      <div class="d-flex justify-content-between">
+        <%= f.button :submit, "Salvar", class: "btn btn-primary" %>
+        <%= link_to "Voltar", outflows_path, class: "btn btn-outline-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>

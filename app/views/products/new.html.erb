@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= simple_form_for @product, html: { class: "mb-3 shadow p-3 mb-5 bg-body-tertiary rounded" } do |f| %>
+      <h2>Novo produto</h2>
+
+      <%= f.error_notification %>
+
+      <%= f.input :title,
+            label: "Título",
+            input_html: { class: "form-control" } %>
+
+      <%= f.input :description,
+            label: "Descrição",
+            as: :text,
+            input_html: { class: "form-control" } %>
+
+      <%= f.input :serie_number,
+            label: "Número de série",
+            as: :text,
+            input_html: { class: "form-control" } %>
+
+      <%= f.input :cost_price,
+            label: "Preço de custo",
+            as: :decimal,
+            input_html: { step: 0.01, class: "form-control" } %>
+
+      <%= f.input :selling_price,
+            label: "Preço de venda",
+            as: :decimal,
+            input_html: { step: 0.01, class: "form-control" } %>
+
+      <%= f.input :quantity,
+            label: "Quantidade",
+            as: :integer,
+            input_html: { class: "form-control" } %>
+
+      <%= f.association :brand,
+            collection: Brand.all,
+            label: "Marca",
+            prompt: "Selecione uma marca",
+            input_html: { class: "form-select" } %>
+
+      <%= f.association :category,
+            collection: Category.all,
+            label: "Categoria",
+            prompt: "Selecione uma categoria",
+            input_html: { class: "form-select" } %>
+
+      <div class="d-flex justify-content-between">
+        <%= f.button :submit, "Salvar produto", class: "btn btn-primary" %>
+        <%= link_to "Voltar", products_path, class: "btn btn-outline-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>

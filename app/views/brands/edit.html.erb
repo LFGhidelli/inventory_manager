@@ -1,0 +1,20 @@
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= form_with model: @brand, method: :patch, class: "mb-3 shadow p-3 mb-5 bg-body-tertiary rounded" do |f| %>
+      <div class="mb-3">
+        <%= f.label :name, class: "form-label" %>
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :description, class: "form-label" %>
+        <%= f.text_area :description, class: "form-control" %>
+      </div>
+
+      <div class="d-flex justify-content-between">
+        <%= f.submit "Save Brand", class: "btn btn-primary" %>
+        <%= link_to "Voltar", brands_path, class: "btn btn-outline-danger" %>
+      </div>
+    <% end %>
+  </div>
+</div>
