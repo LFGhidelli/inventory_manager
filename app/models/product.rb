@@ -15,4 +15,16 @@ class Product < ApplicationRecord
       .by_category(params[:category_query])
       .order(created_at: :desc)
   end
+
+  def self.total_quantity
+    Product.all.sum(:quantity)
+  end
+
+  def self.total_cost_price
+    Product.all.sum(:cost_price)
+  end
+
+  def self.inventory_value
+    Product.all.sum(:selling_price)
+  end
 end

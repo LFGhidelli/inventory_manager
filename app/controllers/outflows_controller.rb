@@ -1,4 +1,6 @@
 class OutflowsController < ApplicationController
+  before_action :set_product
+
   def index
     if params[:query].present?
       @pagy, @outflows = pagy(Outflow.where("name ILIKE ?", "%#{params[:query]}%"))
@@ -19,6 +21,7 @@ class OutflowsController < ApplicationController
     @outflow = Outflow.create(outflow_params)
 
     if @outflow.valid?
+      Product.find(@outflow.product_id).decrement!(:quantity, @outflow.quantity)
       flash[:notice] = "Saída criada com sucesso"
       redirect_to outflows_path
     else

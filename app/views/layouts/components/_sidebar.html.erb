@@ -8,10 +8,10 @@
     <div class="collapse d-sm-block" id="menuCollapse">
       <ul class="nav flex-column align-items-start" id="menu">
         <li>
-          <a href="#" class="nav-link px-0 align-middle">
-          <i class="bi bi-speedometer2 fs-4"></i>              
-          <span class="ms-1">Dashboard</span>
-          </a>
+          <%= link_to dashboards_path, class: "nav-link px-0 align-middle" do %>
+            <i class="bi bi-shop fs-4"></i>             
+            <span class="ms-1">Dashboard</span>
+          <% end %>
         </li>
         <li>
           <%= link_to brands_path, class: "nav-link px-0 align-middle" do %>

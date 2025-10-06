@@ -20,6 +20,7 @@ class InflowsController < ApplicationController
     @inflow.save!
 
     if @inflow.persisted?
+      Product.find(@inflow.product_id).increment!(:quantity, @inflow.quantity)
       flash[:notice] = "Entrada criada com sucesso"
       redirect_to categories_path
     else
