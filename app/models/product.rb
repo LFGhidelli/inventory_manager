@@ -21,10 +21,14 @@ class Product < ApplicationRecord
   end
 
   def self.total_cost_price
-    Product.all.sum(:cost_price)
+    all.sum { |p| p.cost_price * p.quantity }.to_i
   end
 
   def self.inventory_value
-    Product.all.sum(:selling_price)
+    all.sum { |p| p.selling_price * p.quantity }.to_i
+  end
+
+  def self.inventory_profit
+    self.inventory_value - self.total_cost_price
   end
 end
