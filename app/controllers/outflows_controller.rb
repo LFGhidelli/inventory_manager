@@ -1,6 +1,4 @@
 class OutflowsController < ApplicationController
-  before_action :set_product
-
   def index
     if params[:query].present?
       @pagy, @outflows = pagy(Outflow.where("name ILIKE ?", "%#{params[:query]}%"))
