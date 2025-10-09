@@ -23,4 +23,11 @@ class Outflow < ApplicationRecord
   def self.profit
     amount_sold - all.sum { |o| o.quantity * o.product.cost_price }
   end
+
+  def self.daily_sales_data
+    Outflow.where("created_at >= ?", 10.days.ago)
+    .group("DATE(created_at)")
+    .order("DATE(created_at)")
+    .sum(:quantity)
+  end
 end
