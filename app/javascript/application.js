@@ -3,30 +3,28 @@ import "@hotwired/turbo-rails"
 import "controllers"
 
 const ctx = document.getElementById('myChart');
-const amountSold = ctx.dataset.amountSold
-
-console.log(JSON.parse(amountSold))
-console.log(ctx);
-
+const amountSold = JSON.parse(ctx.dataset.amountSold)
 
 new Chart(ctx, {
-  type: 'line',
+  type: 'bar',
   data: {
     labels: Object.keys(amountSold),
     datasets: [{
-      label: '# of sales',
+      label: 'Number of sales',
       data: Object.values(amountSold),
-      borderColor: 'rgba(75, 192, 192, 1)', // teal line
-      backgroundColor: 'rgba(75, 192, 192, 0.2)', // light fill under line
+      borderColor: 'rgba(75, 192, 192, 1)',
+      backgroundColor: 'rgba(75, 192, 192, 0.2)',
       borderWidth: 2,
-      fill: true, // fill area under line
-      tension: 0.3 // curve the line a bit
+      fill: true,
+      tension: 0.2 // curve the line
     }]
   },
   options: {
+    maintainAspectRatio: false,
     scales: {
       y: {
-        beginAtZero: true
+        beginAtZero: true,
+        min: 0
       }
     }
   }

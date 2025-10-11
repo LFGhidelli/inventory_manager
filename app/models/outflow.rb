@@ -25,9 +25,11 @@ class Outflow < ApplicationRecord
   end
 
   def self.daily_sales_data
-    Outflow.where("created_at >= ?", 10.days.ago)
-    .group("DATE(created_at)")
-    .order("DATE(created_at)")
-    .sum(:quantity)
+    raw_data = Outflow.where("created_at >= ?", 10.days.ago)
+                      .group("DATE(created_at)")
+                      .order("DATE(created_at)")
+                      .sum(:quantity)
+
+    (10.days.ago.to_date..Date.today).map { |d| [ d.to_s, raw_data[d] || 0 ] }.to_h
   end
 end
