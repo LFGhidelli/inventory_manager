@@ -32,4 +32,15 @@ class Outflow < ApplicationRecord
 
     (10.days.ago.to_date..Date.today).map { |d| [ d.to_s, raw_data[d] || 0 ] }.to_h
   end
+
+  def self.daily_revenue
+    raw_data = Outflow
+      .joins(:product)
+      .where("outflows.created_at >= ?", 10.days.ago)
+      .group("DATE(outflows.created_at)")
+      .order("DATE(outflows.created_at)")
+      .sum("outflows.quantity * products.selling_price")
+
+      (10.days.ago.to_date..Date.today).map { |d| [ d.to_s, raw_data[d].to_i || 0 ] }.to_h
+  end
 end

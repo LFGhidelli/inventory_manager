@@ -9,7 +9,7 @@
  * Consider organizing styles into separate files for maintainability.
  */
 
- #myChart {
+ #numberOfSales {
   width: 300px;
   height: 300px;
  }
