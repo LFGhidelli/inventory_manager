@@ -3,4 +3,5 @@ import "@hotwired/turbo-rails"
 import "controllers"
 import "charts/number_of_sales_chart"
 import "charts/revenue_chart"
-
+import "charts/products_by_category"
+import "charts/products_by_brand"
