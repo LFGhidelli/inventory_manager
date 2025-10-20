@@ -33,8 +33,9 @@
 
     <div class="container-fluid">
       <div class="row">
-        <%= render "layouts/components/sidebar" %>
-
+        <% if user_signed_in? %>
+          <%= render "layouts/components/sidebar" %>
+        <% end %>
         <div class="col py-3">
           <div class="container mt-4">
             <%= yield %>

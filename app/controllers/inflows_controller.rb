@@ -1,4 +1,5 @@
 class InflowsController < ApplicationController
+  before_action :authenticate_user!
   def index
     if params[:query].present?
       @pagy, @inflows = pagy(Inflow.where("name ILIKE ?", "%#{params[:query]}%"))

@@ -1,4 +1,5 @@
 class SuppliersController < ApplicationController
+  before_action :authenticate_user!
   def index
     if params[:query].present?
       @pagy, @suppliers = pagy(Supplier.where("name ILIKE ?", "%#{params[:query]}%"))

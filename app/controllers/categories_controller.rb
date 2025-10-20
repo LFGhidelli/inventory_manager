@@ -1,4 +1,6 @@
 class CategoriesController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     if params[:query].present?
       @pagy, @categories = pagy(Category.where("name ILIKE ?", "%#{params[:query]}%"))
