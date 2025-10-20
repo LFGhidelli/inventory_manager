@@ -1,0 +1,41 @@
+<div class="container mt-4">
+  <div class="row text-center">
+
+    <div class="col-md-3">
+      <div class="card text-white border border-primary mb-3 shadow">
+        <div class="card-body">
+          <h6 class="card-title">Quantidade de vendas</h6>
+          <h3 class="card-text"><%= Outflow.total_sales %></h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-white border border-danger mb-3 shadow">
+        <div class="card-body">
+          <h6 class="card-title">Produtos vendidos</h6>
+          <h3 class="card-text"><%= Outflow.total_items_sold %></h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-white border border-success mb-3 shadow">
+        <div class="card-body">
+          <h6 class="card-title">Valor das vendas</h6>
+          <h3 class="card-text"><%= number_to_currency(Outflow.amount_sold, unit: "R$", delimiter: ".", separator: ",", precision: 2) %></h3>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-3">
+      <div class="card text-white border border-warning mb-3 shadow">
+        <div class="card-body">
+          <h6 class="card-title">Lucro das vendas</h6>
+          <h3 class="card-text"><%= number_to_currency(Outflow.profit, unit: "R$", delimiter: ".", separator: ",", precision: 2) %></h3>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

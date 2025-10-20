@@ -1,0 +1,13 @@
+<div class="col-md-6">
+  <div class="card shadow-sm border-0">
+    <div class="card-body">
+      <h5 class="card-title text-center mb-3">Receita</h5>
+      <div class="chart-container" style="position: relative; height: 300px;">
+        <canvas 
+          id="revenueChart"
+          data-revenue="<%= Outflow.daily_revenue.to_json %>">
+        </canvas>
+      </div>
+    </div>
+  </div>
+</div>
