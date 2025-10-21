@@ -18,6 +18,8 @@ class SuppliersController < ApplicationController
 
   def create
     @supplier = Supplier.new(supplier_params)
+    authorize @supplier
+
     @supplier.save!
 
     if @supplier.persisted?
@@ -31,10 +33,12 @@ class SuppliersController < ApplicationController
 
   def edit
     @supplier = Supplier.find(params[:id])
+    authorize @supplier
   end
 
   def update
     @supplier = Supplier.find(params[:id])
+    authorize @supplier
 
     if @supplier.update(supplier_params)
       redirect_to suppliers_path
@@ -45,6 +49,7 @@ class SuppliersController < ApplicationController
 
   def destroy
     @supplier = Supplier.find(params[:id])
+    authorize @supplier
 
     @supplier.destroy
     redirect_to suppliers_path

@@ -15,10 +15,12 @@ class BrandsController < ApplicationController
 
   def new
     @brand = Brand.new
+    authorize @brand
   end
 
   def create
     @brand = Brand.new(brand_params)
+    authorize @brand
     @brand.save!
 
     if @brand.persisted?
@@ -32,10 +34,12 @@ class BrandsController < ApplicationController
 
   def edit
     @brand = Brand.find(params[:id])
+    authorize @brand
   end
 
   def update
     @brand = Brand.find(params[:id])
+    authorize @brand
 
     if @brand.update(brand_params)
       redirect_to brands_path
@@ -45,6 +49,7 @@ class BrandsController < ApplicationController
   end
   def destroy
     @brand = Brand.find(params[:id])
+    authorize @brand
 
     @brand.destroy
     redirect_to brands_path

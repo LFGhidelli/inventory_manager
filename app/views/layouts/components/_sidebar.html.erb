@@ -50,7 +50,7 @@
           <% end %>
         </li>
         <li>
-          <%= link_to destroy_user_session_path, class: "nav-link px-0 align-middle" do %>            
+          <%= link_to destroy_user_session_path, data: { turbo_method: :delete }, class: "nav-link px-0 align-middle" do %>            
             <i class="bi bi-person fs-4"></i>          
             <span class="ms-1">Logout</span>
           <% end %>

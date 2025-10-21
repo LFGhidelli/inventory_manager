@@ -1,5 +1,5 @@
 class Product < ApplicationRecord
-  belongs_to :brand
+  belongs_to :brand, optional: true
   belongs_to :category
 
   scope :search, ->(query) { where("title ILIKE ?", "%#{query}%") if query.present? }
