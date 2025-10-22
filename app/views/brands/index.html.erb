@@ -13,10 +13,14 @@
       <%= submit_tag "Search", class: "btn btn-outline-success" %>
     </div>
   <% end %>
-  <%= link_to new_brand_path, class: "btn btn-success" do %>
-    <i class="bi bi-plus"></i>
-    <span>Nova marca</span>
-  <% end%>
+  
+  <% if current_user.admin? %>
+    <%= link_to new_brand_path, class: "btn btn-success" do %>
+      <i class="bi bi-plus"></i>
+      <span>Nova marca</span>
+    <% end%>  
+  <% end %>
+  
 </div>
 
 <div class="table-responsive">
@@ -40,7 +44,6 @@
               <i class="bi bi-eye"></i>
             <% end %>
 
-            
             <% if current_user.admin? %>
               <%= link_to edit_brand_path(brand), class:"btn btn-outline-warning btn-sm" do %>
                 <i class="bi bi-pencil"></i>

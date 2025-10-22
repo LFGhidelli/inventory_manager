@@ -22,12 +22,14 @@
     <% end %>
   </div>
 
-  <div class="col-md-3 text-md-end mt-2 mt-md-0">
-    <%= link_to new_product_path, class: "btn btn-success w-100 w-md-auto" do %>
-      <i class="bi bi-plus"></i>
-      <span>Novo Produto</span>
-    <% end %>
-  </div>
+  <% if current_user.admin? %>
+    <div class="col-md-3 text-md-end mt-2 mt-md-0">
+      <%= link_to new_product_path, class: "btn btn-success w-100 w-md-auto" do %>
+        <i class="bi bi-plus"></i>
+        <span>Novo Produto</span>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 
 <div class="row mb-4">
@@ -61,7 +63,7 @@
         <th scope="col">Preço de venda</th>
         <th scope="col">Número de série</th>
         <th scope="col">Quantidade</th>
-        <th scope="col" class="w-25">Ações</th>
+        <th scope="col" class="">Ações</th>
       </tr>
     </thead>
     <tbody>
@@ -80,15 +82,17 @@
               <i class="bi bi-eye"></i>
             <% end %>
 
-            <%= link_to edit_product_path(product), class:"btn btn-outline-warning btn-sm" do %>
-              <i class="bi bi-pencil"></i>
-            <% end %>
+            <% if current_user.admin? %>
+              <%= link_to edit_product_path(product), class:"btn btn-outline-warning btn-sm" do %>
+                <i class="bi bi-pencil"></i>
+              <% end %>
 
-            <%= link_to product_path(product), 
-                        data: { turbo_method: :delete, confirm: "Are you sure?" }, 
-                        class:"btn btn-outline-danger btn-sm" do %>
-              <i class="bi bi-trash"></i>
-            <% end %>
+              <%= link_to product_path(product), 
+                          data: { turbo_method: :delete, confirm: "Are you sure?" }, 
+                          class:"btn btn-outline-danger btn-sm" do %>
+                <i class="bi bi-trash"></i>
+              <% end %>
+            <% end %>            
           </td>
         </tr>
       <% end %>

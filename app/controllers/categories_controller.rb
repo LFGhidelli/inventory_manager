@@ -15,10 +15,13 @@ class CategoriesController < ApplicationController
 
   def new
     @category = Category.new
+    authorize @category
   end
 
   def create
     @category = Category.new(category_params)
+    authorize @category
+
     @category.save!
 
     if @category.persisted?
@@ -32,11 +35,13 @@ class CategoriesController < ApplicationController
 
   def edit
     @category = Category.find(params[:id])
+    authorize @category
   end
 
   def update
     @category = Category.find(params[:id])
-  
+    authorize @category
+
     if @category.update(category_params)
       redirect_to categories_path
     else
@@ -45,6 +50,7 @@ class CategoriesController < ApplicationController
   end
   def destroy
     @category = Category.find(params[:id])
+    authorize @category
 
     @category.destroy
     redirect_to categories_path
