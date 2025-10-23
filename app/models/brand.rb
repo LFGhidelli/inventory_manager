@@ -4,4 +4,8 @@ class Brand < ApplicationRecord
   def self.products_by_brand
     all.map { |brand| [ brand.name, brand.products.count ] }.to_h
   end
+
+  def self.generate(brand)
+    
+  end
 end
