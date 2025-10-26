@@ -19,9 +19,9 @@ class BrandsController < ApplicationController
   end
 
   def create
-    @brand = Brand.new(brand_params)
+    @brand = Brand.create(brand_params)
     authorize @brand
-    @brand.save!
+
 
     if @brand.persisted?
       flash[:notice] = "Marca criada com sucesso"
