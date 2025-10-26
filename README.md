@@ -4,13 +4,6 @@ The **Inventory Management System** is a web application built with Ruby on Rail
 
 ---
 
-## 📸 Demo Screenshot
-
-![Dashboard Preview](app/assets/images/screenshot.png)
-
-
----
-
 ## ✅ Features
 
 - ✅ Manage **brands**, **suppliers**, **categories**, and **products**
