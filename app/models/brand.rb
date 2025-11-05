@@ -8,7 +8,6 @@ class Brand < ApplicationRecord
   end
 
   def set_description_if_blank
-    debugger
     if self.description.blank?
       self.description = Ai::BrandDescription.generate(self.name)
     end

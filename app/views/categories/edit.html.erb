@@ -1,20 +1,33 @@
-<div class="row justify-content-center">
-  <div class="col-md-6">
-    <%= form_with model: @category, method: :patch, class: "mb-3 shadow p-3 mb-5 bg-body-tertiary rounded" do |f| %>
-      <div class="mb-3">
-        <%= f.label :name, class: "form-label" %>
-        <%= f.text_field :name, class: "form-control" %>
+<% content_for :page_title, "Editar Categoria" %>
+<div class="max-w-3xl mx-auto space-y-6 animate-fade-in">
+  <div><%= link_to categories_path, class: "inline-flex items-center text-gray-400 hover:text-white transition-colors" do %><i class="bi bi-arrow-left mr-2"></i>Voltar<% end %></div>
+  <div class="bg-gray-800/50 backdrop-blur-xl rounded-xl border border-gray-700/50 overflow-hidden">
+    <div class="bg-gradient-to-r from-yellow-600/20 to-orange-600/20 px-8 py-6 border-b border-gray-700/50">
+      <div class="flex items-center gap-4">
+        <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-yellow-500 to-orange-600 flex items-center justify-center shadow-lg shadow-yellow-500/30"><i class="bi bi-pencil text-white text-xl"></i></div>
+        <div><h1 class="text-2xl font-bold text-white">Editar Categoria</h1><p class="text-sm text-gray-400 mt-1"><%= @category.name %></p></div>
       </div>
-
-      <div class="mb-3">
-        <%= f.label :description, class: "form-label" %>
-        <%= f.text_area :description, class: "form-control" %>
-      </div>
-
-      <div class="d-flex justify-content-between">
-        <%= f.submit "Save category", class: "btn btn-primary" %>
-        <%= link_to "Voltar", categories_path, class: "btn btn-outline-danger" %>
-      </div>
-    <% end %>
+    </div>
+    <div class="p-8">
+      <%= simple_form_for @category do |f| %>
+        <%= f.error_notification %>
+        <div class="space-y-6">
+          <div>
+            <%= f.label :name, "Nome", class: "block text-sm font-medium text-gray-300 mb-2" %>
+            <%= f.input_field :name, class: "w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all", placeholder: "Nome da categoria" %>
+            <%= f.error :name, class: "mt-1 text-sm text-red-400" %>
+          </div>
+          <div>
+            <%= f.label :description, "Descrição", class: "block text-sm font-medium text-gray-300 mb-2" %>
+            <%= f.input_field :description, as: :text, class: "w-full px-4 py-3 bg-gray-900/50 border border-gray-700 rounded-lg text-gray-100 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:border-transparent transition-all", rows: 4, placeholder: "Descreva a categoria..." %>
+            <%= f.error :description, class: "mt-1 text-sm text-red-400" %>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mt-8 pt-6 border-t border-gray-700/50">
+          <%= link_to categories_path, class: "px-6 py-3 bg-gray-700 hover:bg-gray-600 text-white font-medium rounded-lg transition-colors" do %>Cancelar<% end %>
+          <%= f.button :submit, "Atualizar Categoria", class: "px-6 py-3 bg-gradient-to-r from-yellow-600 to-orange-600 hover:from-yellow-700 hover:to-orange-700 text-white font-medium rounded-lg shadow-lg shadow-yellow-500/30 transition-all duration-300 hover:scale-105" %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

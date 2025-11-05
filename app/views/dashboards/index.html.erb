@@ -1,14 +1,31 @@
-<%= render "dashboards/metrics/product" %>
-<%= render "dashboards/metrics/sales" %>
+<% content_for :page_title, "Dashboard" %>
 
-<div class="container my-4">
-  <div class="row g-4">
+<!-- Animated background elements -->
+<div class="fixed inset-0 overflow-hidden pointer-events-none -z-10">
+  <div class="absolute top-20 left-10 w-72 h-72 bg-purple-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float"></div>
+  <div class="absolute top-40 right-10 w-72 h-72 bg-blue-500 rounded-full mix-blend-multiply filter blur-3xl opacity-10 animate-float" style="animation-delay: 1s;"></div>
+</div>
+
+<div class="space-y-8 animate-fade-in">
+  <!-- Header Section -->
+  <div class="flex items-center justify-between">
+    <div>
+      <h1 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-blue-400">
+        Visão Geral
+      </h1>
+      <p class="mt-1 text-gray-400">Acompanhe as métricas principais do seu estoque</p>
+    </div>
+  </div>
+
+  <!-- Metrics Sections -->
+  <%= render "dashboards/metrics/product" %>
+  <%= render "dashboards/metrics/sales" %>
+
+  <!-- Charts Section -->
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
     <%= render "dashboards/charts/number_of_sales" %>
     <%= render "dashboards/charts/revenue" %>
     <%= render "dashboards/charts/products_by_category" %>
     <%= render "dashboards/charts/products_by_brand" %>
   </div>
 </div>
-
-
-

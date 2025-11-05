@@ -1,6 +1,29 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark">
-  <div class="container-fluid">
-    <a class="navbar-brand text-white" href="#">Sistema de Gestão de Estoque (SGE)</a>
-  </div>
-</nav>
+<!-- Header -->
+<header class="bg-gray-800/30 backdrop-blur-xl border-b border-gray-700/50 sticky top-0 z-30">
+  <div class="px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center justify-between gap-4">
+      <!-- Page Title / Breadcrumb -->
+      <div class="flex items-center space-x-4 flex-1 min-w-0">
+        <!-- Spacer for mobile menu button -->
+        <div class="w-14 lg:hidden"></div>
+        <h2 class="text-lg sm:text-xl lg:text-2xl font-bold text-white truncate">
+          <%= content_for?(:page_title) ? yield(:page_title) : controller_name.titleize %>
+        </h2>
+      </div>
 
+      <!-- Right Side Actions -->
+      <div class="flex items-center space-x-2 sm:space-x-4 shrink-0">
+        <!-- Flash Messages Display (if any) -->
+        <% if flash.any? %>
+          <div class="text-xs sm:text-sm">
+            <% flash.each do |type, msg| %>
+              <div class="px-3 sm:px-4 py-2 rounded-lg <%= flash_class(type) %> animate-fade-in max-w-xs sm:max-w-md truncate">
+                <%= msg %>
+              </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</header>
