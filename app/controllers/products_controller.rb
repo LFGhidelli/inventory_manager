@@ -1,7 +1,7 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
   def index
-    @pagy, @products = pagy(Product.all.filtered(params))
+    @pagy, @products = pagy(Product.all.filtered(params), limit: 5)
   end
 
   def show

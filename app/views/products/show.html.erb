@@ -1,0 +1,126 @@
+<% content_for :page_title, "Detalhes do Produto" %>
+
+<div class="max-w-4xl mx-auto space-y-6 animate-fade-in">
+  <!-- Back Button -->
+  <div>
+    <%= link_to products_path, class: "inline-flex items-center text-gray-400 hover:text-white transition-colors" do %>
+      <i class="bi bi-arrow-left mr-2"></i>
+      Voltar para lista
+    <% end %>
+  </div>
+
+  <!-- Product Details Card -->
+  <div class="bg-gray-800/50 backdrop-blur-xl rounded-xl border border-gray-700/50 overflow-hidden">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-purple-600/20 to-blue-600/20 px-8 py-6 border-b border-gray-700/50">
+      <div class="flex items-center justify-between">
+        <div>
+          <h1 class="text-3xl font-bold text-white"><%= @product.title %></h1>
+          <p class="mt-1 text-gray-400">ID: #<%= @product.id %></p>
+        </div>
+        <div class="w-16 h-16 rounded-xl bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center shadow-lg shadow-purple-500/30">
+          <i class="bi bi-box-seam text-white text-3xl"></i>
+        </div>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="p-8 space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <!-- Description -->
+        <div class="md:col-span-2">
+          <label class="block text-sm font-medium text-gray-400 mb-2">Descrição</label>
+          <p class="text-white bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+            <%= @product.description || "Sem descrição" %>
+          </p>
+        </div>
+
+        <!-- Category -->
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Categoria</label>
+          <p class="text-white bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+            <%= @product.category.name %>
+          </p>
+        </div>
+
+        <!-- Brand -->
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Marca</label>
+          <p class="text-white bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+            <%= @product.brand.nil? ? "N/A" : @product.brand.name %>
+          </p>
+        </div>
+
+        <!-- Serial Number -->
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Número de Série</label>
+          <p class="text-white bg-gray-900/50 rounded-lg p-4 border border-gray-700 font-mono">
+            <%= @product.serie_number %>
+          </p>
+        </div>
+
+        <!-- Quantity -->
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Quantidade</label>
+          <div class="bg-gray-900/50 rounded-lg p-4 border border-gray-700">
+            <span class="px-4 py-2 rounded-lg text-lg font-bold <%= @product.quantity > 10 ? 'bg-green-500/20 text-green-400' : @product.quantity > 0 ? 'bg-yellow-500/20 text-yellow-400' : 'bg-red-500/20 text-red-400' %>">
+              <%= @product.quantity %> unidades
+            </span>
+          </div>
+        </div>
+
+        <!-- Cost Price -->
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Preço de Custo</label>
+          <p class="text-white bg-gray-900/50 rounded-lg p-4 border border-gray-700 text-lg font-semibold">
+            <%= number_to_currency(@product.cost_price, unit: "R$ ", separator: ",", delimiter: ".") %>
+          </p>
+        </div>
+
+        <!-- Selling Price -->
+        <div>
+          <label class="block text-sm font-medium text-gray-400 mb-2">Preço de Venda</label>
+          <p class="text-green-400 bg-gray-900/50 rounded-lg p-4 border border-gray-700 text-lg font-semibold">
+            <%= number_to_currency(@product.selling_price, unit: "R$ ", separator: ",", delimiter: ".") %>
+          </p>
+        </div>
+      </div>
+
+      <!-- Profit Margin -->
+      <div class="bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-lg p-6 border border-purple-500/30">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-sm text-gray-400">Margem de Lucro (por unidade)</p>
+            <p class="text-2xl font-bold text-white mt-1">
+              <%= number_to_currency(@product.selling_price - @product.cost_price, unit: "R$ ", separator: ",", delimiter: ".") %>
+            </p>
+          </div>
+          <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-purple-500 to-blue-600 flex items-center justify-center">
+            <i class="bi bi-graph-up-arrow text-white text-xl"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Actions -->
+    <div class="bg-gray-900/30 px-8 py-4 border-t border-gray-700/50 flex items-center justify-between">
+      <div class="text-xs text-gray-500">
+        Criado em <%= l(@product.created_at, format: :long) %>
+      </div>
+      <% if current_user.admin? %>
+        <div class="flex gap-2">
+          <%= link_to edit_product_path(@product), class: "inline-flex items-center px-4 py-2 bg-yellow-600/20 hover:bg-yellow-600/40 text-yellow-400 rounded-lg transition-colors" do %>
+            <i class="bi bi-pencil mr-2"></i>
+            Editar
+          <% end %>
+          <%= link_to product_path(@product),
+                      data: { turbo_method: :delete, turbo_confirm: "Tem certeza que deseja excluir este produto?" },
+                      class: "inline-flex items-center px-4 py-2 bg-red-600/20 hover:bg-red-600/40 text-red-400 rounded-lg transition-colors" do %>
+            <i class="bi bi-trash mr-2"></i>
+            Excluir
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

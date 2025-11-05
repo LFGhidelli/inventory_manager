@@ -7,7 +7,18 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  # Use devise layout for Devise controllers
+  layout :layout_by_resource
+
   private
+
+  def layout_by_resource
+    if devise_controller?
+      "devise"
+    else
+      "application"
+    end
+  end
 
   def user_not_authorized
     redirect_to(request.referer || root_path, alert: "You are not allowed to do that.")
